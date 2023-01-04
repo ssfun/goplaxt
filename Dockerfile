@@ -1,16 +1,5 @@
-FROM golang:1.12.7-alpine as builder
-WORKDIR $GOPATH/src/github.com/xanderstrike/goplaxt/
-RUN apk add --no-cache git
-COPY . .
-RUN mkdir /out
-RUN mkdir /out/keystore
-RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/goplaxt-docker
+FROM xanderstrike/goplaxt:latest
 
-FROM scratch
-LABEL maintainer="xanderstrike@gmail.com"
-WORKDIR /app
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=builder /out .
-COPY static ./static
-EXPOSE 8000
+EXPOSE map[8000/tcp:{}]
+
 ENTRYPOINT ["/app/goplaxt-docker"]
