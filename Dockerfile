@@ -12,6 +12,5 @@ WORKDIR /app
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /out .
 COPY static ./static
-VOLUME /app/keystore/
 EXPOSE 8000
 ENTRYPOINT ["/app/goplaxt-docker"]
