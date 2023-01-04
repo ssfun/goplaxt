@@ -1,5 +1,5 @@
 FROM xanderstrike/goplaxt:latest
 
-EXPOSE map[8000/tcp:{}]
+EXPOSE 8000
 
 ENTRYPOINT ["/app/goplaxt-docker"]
